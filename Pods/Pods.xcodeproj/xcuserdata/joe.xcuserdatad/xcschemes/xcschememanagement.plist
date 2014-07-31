@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-AGAssert.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-AGGeometryKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-JRSwizzle.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>20A58E3BC24042BBBAEEF680</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AF21176B22E04ECBBC3AD280</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C15FE02FBC9B4EDAA0FA8A79</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB47A66AA95046E1A48C02D5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
