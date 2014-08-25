@@ -90,8 +90,10 @@
                 NSArray* newBlocks = [((SKShapeNode *)shapePossibleToCut) cutWithLine:cutLine];
                 if ([newBlocks count] >= 2) { // Object is able to be cut
                     for (SKSpriteNode* node in newBlocks) {
-                        [self addChild:node];
-                        NSLog(@"Size of new node %f", [((SKShapeNode *)node) area]);
+                        if(![node isEqual:[NSNull null]]) {
+                            [self addChild:node];
+                            NSLog(@"Size of new node %f", [((SKShapeNode *)node) area]);
+                        }
                     }
                     [shapePossibleToCut removeFromParent];
                 }

@@ -1,5 +1,12 @@
 #import "SKShapeNode+Cuttable.h"
 
+// Shapes smaller than the SMALL_SHAPE_SIZE will not be created.
+// Note*: If a new node is very small and gets added to the scene with a physics body and a
+// mass less than 0, then an assertion fails and the application crashes. This define serves
+// as a dual prupose to allow small shapes to never be created and prevents these crashes to
+// occur. AN alternative implementation would be to return an empty array.
+#define SMALL_SHAPE_SIZE 4.0f
+
 static void extractPointApplier(void* info, const CGPathElement* element) {
     [((__bridge NSMutableArray*) info) addObject:[NSValue valueWithCGPoint:*element->points]];
 }
@@ -57,9 +64,19 @@ static void extractPointApplier(void* info, const CGPathElement* element) {
         nextShape.path = firstShapePath;
         nextShape.strokeColor = self.strokeColor;
         nextShape.fillColor = self.fillColor;
-        if (self.physicsBody != nil) {
+        
+        // Set as null if the size is to small
+        if ([nextShape area] <= SMALL_SHAPE_SIZE) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincompatible-pointer-types"
+            nextShape = [NSNull null];
+#pragma clang diagnostic pop
+        
+        } else if (self.physicsBody != nil) {
             nextShape.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:firstShapePath];
             nextShape.physicsBody.velocity = self.physicsBody.velocity;
+            //nextShape.physicsBody.angularVelocity = self.physicsBody.angularVelocity;
+            // really becomes an angular velocity around the center point
         }
         
         // Shape two
@@ -76,10 +93,18 @@ static void extractPointApplier(void* info, const CGPathElement* element) {
         shapeTwo.path = secondShapePath;
         shapeTwo.strokeColor = self.strokeColor;
         shapeTwo.fillColor = self.fillColor;
-        
-        if (self.physicsBody != nil) {
+
+        // Set as null if the size is to small
+        if ([shapeTwo area] <= SMALL_SHAPE_SIZE) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincompatible-pointer-types"
+            shapeTwo = [NSNull null];
+#pragma clang diagnostic pop
+            
+        } else if (self.physicsBody != nil) {
             shapeTwo.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:secondShapePath];
             shapeTwo.physicsBody.velocity = self.physicsBody.velocity;
+            //shapeTwo.physicsBody.angularVelocity = self.physicsBody.angularVelocity;
         }
         
         return [NSArray arrayWithObjects:nextShape, shapeTwo, nil];

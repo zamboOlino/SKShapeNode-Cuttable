@@ -1,5 +1,6 @@
 #import <SpriteKit/SpriteKit.h>
 #import <AGGeometryKit.h>
+#import "SKShapeNode+Area.h"
 
 @interface SKShapeNode (Cuttable)
 
